@@ -7,7 +7,7 @@ import java.awt.Color;
 /**
  * Inventar Anzeige. Kann mit der Gui interagieren. 
  * 
- * @Tim Jascheck, Mina Granzin 
+ * @Tim Jascheck, Mina Granzin, Tjorven Bruns 
  * @21.02.2020
  */
 public class InventarAnzeige extends JPanel
@@ -35,7 +35,8 @@ public class InventarAnzeige extends JPanel
     }
 
     /**
-     * Die Gegenstandsbuttons werden erzeugt (entsprechent der Anzahl (mit den Namen der in ihnen gespeicherten Gegenstaenden)) 
+     * Die Gegenstandsbuttons werden erzeugt (entsprechent der Anzahl (mit den Namen der in ihnen gespeicherten Gegenstaenden))
+     * 
      */
     public void buttonInventar()
     {    
@@ -46,9 +47,16 @@ public class InventarAnzeige extends JPanel
         inventarflaeche.setBackground(braun);
         
         /**Die Buttons fuer die Gegenstaende werden erzeugt*/
-            for(int i=0; i<inventar.getGegenstaende().size(); i++){
-                JButton gegenstandBtn = erstelleButton(inventar.getGegenstaende().get(i));
-                inventarflaeche.add(gegenstandBtn);
+            for(int i=0; i<inventar.getObjects().length; i++){
+                try
+                {
+                    JButton gegenstandBtn = erstelleButton(inventar.getObjectAt(i));
+                    inventarflaeche.add(gegenstandBtn);
+                }
+                catch(NullPointerException e)
+                {
+                }
+                //Damit falls kein Hinweis im Array gespeichert ist, keine Fehlermeldung kommt
             }      
         
         /**Der Button um die Ansicht des Ausgewahlten Gegenstands zu schliessen; denkbare Erweiterung: Diesen Button nur Anzeigen, wenn zurzeit ein Gegensand angezeigt wird*/
