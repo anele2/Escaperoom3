@@ -133,7 +133,7 @@ public class SpielGUI
                 aktuellerGegenstand.getAussehen().setLocation(aktuellerGegenstand.getXPosition(),aktuellerGegenstand.getYPosition());
                 aktuellerGegenstand.getAussehen().addMouseListener(new MouseListener() 
                     {
-                        public void mouseClicked(MouseEvent e) {}//menü öffnen test:spieler.nachRechtsKucken(); wandWechsel(spieler.getBlickrichtung());}
+                        public void mouseClicked(MouseEvent e) {}//menü öffnen test:spieler.nachRechtsKucken(); wandWechsel(spieler.getBlickrichtung());}//eine Änderung
                         public void mouseEntered(MouseEvent e) {}
                         public void mouseExited(MouseEvent e) {}
                         public void mousePressed(MouseEvent e) {}
