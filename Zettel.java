@@ -28,7 +28,7 @@ public class Zettel extends Gegenstand
     {        
         super("src/zettel.jpg",0,0,200,200);    
         text = textZet; 
-        constructJLabel();              
+        constructJLabel();
     }
     
     public void constructJLabel()
@@ -64,5 +64,6 @@ public class Zettel extends Gegenstand
     public String getName() {
         return "Zettel";
     }
+    
 }
 
