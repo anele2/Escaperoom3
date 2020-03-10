@@ -21,6 +21,9 @@ public class SpielGUI
         Westen = 3;
      */
     
+    private Gegenstand gegenstand;
+    
+    
     /**Der Spieler*/
     private Spieler spieler;
     
@@ -38,6 +41,8 @@ public class SpielGUI
     
     /** Darstellung des Inventars */    
     private InventarAnzeige inventarAnz;
+    
+    private JPopupMenu menue;
     
     /** Farben fuer die GUI. 3 Arten von Blau + Grau + Braun */
         Color hellBlau = new Color(225, 236, 255);
@@ -88,10 +93,24 @@ public class SpielGUI
         /** Erstellt eine Inventar-Anzeige, die wiederum ein Inventar-Objekt erzeugt*/
         erzeugeInv();
         
+        erzeugePopUp();
+        //test();
+        
         /** Aufbau abgeschlossen - Komponenten arrangieren lassen */
         fenster.setSize(length, height); //An den Zahlen kann nochmal gefeilt werden
         fenster.setVisible(true);
         fenster.setResizable(true);
+    }
+    
+    private void erzeugePopUp()
+    {
+        menue = new JPopupMenu();
+        JMenuItem eintrag1 = new JMenuItem("benutzen");
+        JMenuItem eintrag2 = new JMenuItem("einsammeln");
+        JMenuItem eintrag3 = new JMenuItem("anzeigen");
+        menue.add(eintrag1);
+        menue.add(eintrag2);
+        menue.add(eintrag3);
     }
     
     /**
@@ -104,9 +123,9 @@ public class SpielGUI
     {
         manager = new JLayeredPane();//Container mit mehreren Ebenen
         fenster.add(manager, BorderLayout.CENTER);//
-
+        
         manager.add(aktuelleWand, 0); //wand wird eingefügt, im Manager über index 0 abgespeichert
-        manager.setLayer(aktuelleWand, 0);// und auf den Standart Layer gelegt
+        manager.setLayer(aktuelleWand, 100);// und auf den Standart Layer gelegt
         
         gegenstaendeHinzufügen();
         gegenstaendeSichtbarkeitAendern(0,true);
@@ -121,7 +140,7 @@ public class SpielGUI
         int platzImManager = 1;
         for(int w=0; w<3; w++)//geht alle Wände des Raumes durch
         {
-            int anzahlGegenstaende = raumEins.getWand(w).getAnzahlGegenstaende();
+            int anzahlGegenstaende = raumEins.getWand(w).getGegenstaende().size();
             for(int i=0; i<anzahlGegenstaende; i++)//geht alle Gegenstände der Wand durch
             {
                 //Abbild des Gegenstandes wird eingefügt, an die richtige Stelle verschoben und unsichtbar gemacht
@@ -133,7 +152,7 @@ public class SpielGUI
                 aktuellerGegenstand.getAussehen().setLocation(aktuellerGegenstand.getXPosition(),aktuellerGegenstand.getYPosition());
                 aktuellerGegenstand.getAussehen().addMouseListener(new MouseListener() 
                     {
-                        public void mouseClicked(MouseEvent e) {}//menü öffnen test:spieler.nachRechtsKucken(); wandWechsel(spieler.getBlickrichtung());}//eine Änderung
+                        public void mouseClicked(MouseEvent e) {}//if(aktuellerGegenstand==instance spieler.trinke(); }//menue.show(e.getComponent(),e.getX(), e.getY());}//menü öffnen test:spieler.nachRechtsKucken(); wandWechsel(spieler.getBlickrichtung());}//eine Änderung
                         public void mouseEntered(MouseEvent e) {}
                         public void mouseExited(MouseEvent e) {}
                         public void mousePressed(MouseEvent e) {}
@@ -183,7 +202,7 @@ public class SpielGUI
      */    
     public void gegenstaendeSichtbarkeitAendern(int wand, boolean sichtbar)
     {
-        int anzahlGegenstaende = raumEins.getWand(wand).getAnzahlGegenstaende();
+        int anzahlGegenstaende = raumEins.getWand(wand).getGegenstaende().size();
             for(int i=0; i<anzahlGegenstaende; i++)
             {
                 raumEins.getWand(wand).getGegenstaende().get(i).getAussehen().setVisible(sichtbar);

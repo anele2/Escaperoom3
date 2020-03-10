@@ -63,6 +63,8 @@ public abstract class Gegenstand
         return yPosition;
     }
     
+    public void benutzen() {}
+    
     public abstract String getName();
     
     /**

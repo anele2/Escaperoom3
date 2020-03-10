@@ -13,7 +13,7 @@ import java.awt.Color;
 public class Spieler
 {
     private int blickrichtung;
-    private Inventar inventar;
+    private Inventar inventar;    
     /**
      * Standard-Konstruktor für Objekte der Klasse Spieler
      */
@@ -63,4 +63,12 @@ public class Spieler
         return inventar;
     }
     
+    /**
+     * @param Setze den Wert der aktuellen Blickrichtung des Spielers.
+     */
+    private void trinke(Gegenstand flasche)
+    {
+        //if(flasche.getInhalt()=="wein")
+        {}
+    }
 }

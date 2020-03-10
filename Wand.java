@@ -18,7 +18,6 @@ public class Wand
     private JLabel test;    //Lediglich fuer die Prototyp-Phase
     private BildComponent wandCont; //Wird im "Center" der Main-GUI angezeigt
     private ArrayList<Gegenstand> gegenstaende = new ArrayList<Gegenstand>();
-    private int anzahlGegenstaende;
     /**
      * Konstruktor fuer Objekte der Klasse Wand
      * @param String name : liefert den Text fÃ¼r das Test-Label
@@ -27,13 +26,13 @@ public class Wand
     {        
         //@author Jakob Kleine
         try {
-    		wandCont = new BildComponent(ImageIO.read(getClass().getResourceAsStream(bildname)));
-    		wandCont.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+            wandCont = new BildComponent(ImageIO.read(getClass().getResourceAsStream(bildname)));
+            wandCont.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         
-	//Layout wird erstellt
+    //Layout wird erstellt
         GridLayout wandLayout = new GridLayout(1,1);
         wandCont.setLayout(wandLayout);
         
@@ -52,20 +51,22 @@ public class Wand
     }
     
     /** @author Elena Nehse, Paula Seidler*/    
-        /**
-         * @return Array der Gegenstaende auf der Wand
-         */
-        public ArrayList<Gegenstand> getGegenstaende()
-        {
-            return gegenstaende;
-        }
+    /**
+    * @return Array der Gegenstaende auf der Wand
+    */
+    public ArrayList<Gegenstand> getGegenstaende()
+    {
+        return gegenstaende;
+    }
         
+   
         
-        /**
-         * @return Anzahl der Gegenstaende auf der Wand
-         */
-        public int getAnzahlGegenstaende()
-        {
-            return anzahlGegenstaende;
-        }
+    /**
+     * hier wird der Wand ein Gegenstand hinzugefuegt
+     * @param der zu hinzufuegende Gegenstand
+     */
+    public void addGegenstand(Gegenstand gegenstand)
+    {
+        gegenstaende.add(gegenstand);
+    }
 }

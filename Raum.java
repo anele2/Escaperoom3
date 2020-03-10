@@ -20,6 +20,7 @@ public class Raum
     {
         //Erstellt vier Wände mit den dementsprechent benannten JLabels
         wandN=new Wand("Norden","src/wandMinaBlau.jpg");
+        wandN.addGegenstand(new Flasche("wein","src/flasche-blau.jpg",100,100,100,100));
         wandO=new Wand("Osten","src/wandGelb.jpg");
         wandS=new Wand("Sueden","src/wandRot.jpg");
         wandW=new Wand("Westen","src/wandGruen.jpg");
