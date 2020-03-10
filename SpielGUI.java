@@ -121,11 +121,11 @@ public class SpielGUI
      */
     private void erzeugeWandanzeige()
     {
-        manager = new JLayeredPane();//Container mit mehreren Ebenen
-        fenster.add(manager, BorderLayout.CENTER);//
+        manager = fenster.getLayeredPane();//Container mit mehreren Ebenen
+        //fenster.add(manager, BorderLayout.CENTER);//
         
-        manager.add(aktuelleWand, 0); //wand wird eingefügt, im Manager über index 0 abgespeichert
-        manager.setLayer(aktuelleWand, 100);// und auf den Standart Layer gelegt
+        //manager.add(aktuelleWand, 0); //wand wird eingefügt, im Manager über index 0 abgespeichert
+        //manager.setLayer(aktuelleWand, 100);// und auf den Standart Layer gelegt
         
         gegenstaendeHinzufügen();
         gegenstaendeSichtbarkeitAendern(0,true);
@@ -145,14 +145,14 @@ public class SpielGUI
             {
                 //Abbild des Gegenstandes wird eingefügt, an die richtige Stelle verschoben und unsichtbar gemacht
                 Gegenstand aktuellerGegenstand = raumEins.getWand(w).getGegenstaende().get(i);//zwischenspeicher
-                manager.add(aktuellerGegenstand.getAussehen(),platzImManager); 
+                manager.add(aktuellerGegenstand.getAussehen(),new Integer(platzImManager)); 
                 platzImManager++;
                 manager.setLayer(aktuellerGegenstand.getAussehen(), 100);
                 aktuellerGegenstand.getAussehen().setVisible(false);
                 aktuellerGegenstand.getAussehen().setLocation(aktuellerGegenstand.getXPosition(),aktuellerGegenstand.getYPosition());
                 aktuellerGegenstand.getAussehen().addMouseListener(new MouseListener() 
                     {
-                        public void mouseClicked(MouseEvent e) {}//if(aktuellerGegenstand==instance spieler.trinke(); }//menue.show(e.getComponent(),e.getX(), e.getY());}//menü öffnen test:spieler.nachRechtsKucken(); wandWechsel(spieler.getBlickrichtung());}//eine Änderung
+                        public void mouseClicked(MouseEvent e) {menue.show(e.getComponent(),e.getX(), e.getY());}//if(aktuellerGegenstand==instance spieler.trinke(); }//menü öffnen test:spieler.nachRechtsKucken(); wandWechsel(spieler.getBlickrichtung());}//eine Änderung
                         public void mouseEntered(MouseEvent e) {}
                         public void mouseExited(MouseEvent e) {}
                         public void mousePressed(MouseEvent e) {}
