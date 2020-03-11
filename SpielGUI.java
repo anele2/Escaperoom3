@@ -87,7 +87,7 @@ public class SpielGUI
 
         /** Hinweisebene und Wand wird eingefügt*/
         aktuelleWand = raumEins.getWand(0).getWandCon();
-        erzeugeWandanzeige(); //@Elena Nehse
+        erzeugeWandanzeige(); //@Elena Nehse//kurz geworden. Doch direkt hier?
         fenster.add(aktuelleWand, BorderLayout.CENTER);
         
         /** Erstellen die Buttons, mit denen man sich im Raum bewegen kann. */
@@ -128,6 +128,7 @@ public class SpielGUI
         //    eintrag2.addActionListener(new ActionListener()
         //        {
         //            public void actionPerformed(ActionEvent e) {inventar.aufnehmen();}
+        //                                                          manager.remove(e.getSource())
         //        }
         //        );
         //}
@@ -142,11 +143,6 @@ public class SpielGUI
     private void erzeugeWandanzeige()
     {
         manager = fenster.getLayeredPane();//Container mit mehreren Ebenen
-        //fenster.add(manager, BorderLayout.CENTER);//
-        
-        //manager.add(aktuelleWand, 0); //wand wird eingefügt, im Manager über index 0 abgespeichert
-        //manager.setLayer(aktuelleWand, 100);// und auf den Standart Layer gelegt
-        
         gegenstaendeHinzufügen();
         gegenstaendeSichtbarkeitAendern(0,true);
     }
@@ -158,7 +154,7 @@ public class SpielGUI
     private void gegenstaendeHinzufügen()
     {
         int platzImManager = 1;
-        for(int w=0; w<3; w++)//geht alle Wände des Raumes durch
+        for(int w=0; w<4; w++)//geht alle Wände des Raumes durch
         {
             int anzahlGegenstaende = raumEins.getWand(w).getGegenstaende().size();
             for(int i=0; i<anzahlGegenstaende; i++)//geht alle Gegenstände der Wand durch

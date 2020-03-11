@@ -20,10 +20,21 @@ public class Raum
     {
         //Erstellt vier Wände mit den dementsprechent benannten JLabels
         wandN=new Wand("Norden","src/wandMinaBlau.jpg");
-        wandN.addGegenstand(new Flasche("wein","src/flasche-blau.jpg",700,450,50,100));
-        wandO=new Wand("Osten","src/wandGelb.jpg");
-        wandS=new Wand("Sueden","src/wandRot.jpg");
-        wandW=new Wand("Westen","src/wandGruen.jpg");
+        wandN.addGegenstand(new Flasche("wein","src/flasche-blau.jpg",590,450,50,100));
+        wandN.addGegenstand(new Flasche("wein","src/flasche-blau.jpg",650,450,50,100));
+        wandN.addGegenstand(new Flasche("wein","src/flasche-blau.jpg",710,450,50,100));
+        wandN.addGegenstand(new Flasche("gift","src/flasche-blau.jpg",770,450,50,100));
+        wandN.addGegenstand(new Flasche("gift","src/flasche-blau.jpg",830,450,50,100));
+        wandN.addGegenstand(new Flasche("gift","src/flasche-blau.jpg",890,450,50,100));
+        wandN.addGegenstand(new Flasche("weiter","src/flasche-blau.jpg",950,450,50,100));
+        //wandN.addGegenstand(new Zettel("src/Brief.jpg",950,450,50,100));
+        wandN.addGegenstand(new Zettel("Ich weiß nicht"));
+        wandO=new Wand("Osten","src/wändevorlagekleiner.jpg");
+        wandO.addGegenstand(new Zettel("was hier rein soll."));
+        wandS=new Wand("Sueden","src/wändevorlagekleiner.jpg");
+        wandS.addGegenstand(new Zettel("Daher"));
+        wandW=new Wand("Westen","src/wändevorlagekleiner.jpg");
+        wandW.addGegenstand(new Zettel("erstmal irgendwas"));
     }
 
     /**

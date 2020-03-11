@@ -26,7 +26,7 @@ public class Zettel extends Gegenstand
      */
     public Zettel(String textZet)
     {        
-        super("src/zettel.jpg",0,0,200,200);    
+        super("src/zettel.jpg",50,20,200,200);    
         text = textZet; 
         constructJLabel();
     }
