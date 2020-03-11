@@ -175,12 +175,13 @@ public class SpielGUI
             nachRechts.setFont(new Font("Serif", Font.BOLD, 16));  //Schriftanpassung
             nachRechts.setBackground(grau); //Farbanpassung 
             fenster.add(nachRechts, BorderLayout.EAST);                      
-                nachRechts.addActionListener(new ActionListener() 
+            nachRechts.addActionListener(new ActionListener() 
                 {
                     public void actionPerformed(ActionEvent e) { int alteBlick = spieler.getBlickrichtung(); spieler.nachRechtsKucken(); wandWechsel(spieler.getBlickrichtung(),alteBlick);}
                 }     
                 );             
-            }            
+    }
+    
     public void nachLinksButton()
     {
         JButton nachLinks = new JButton("<-");  //Vielleicht kann man sich hier spÃ¤ter etwas schÃ¶neres Ã¼berlegen
@@ -192,7 +193,7 @@ public class SpielGUI
                 }     
                 ); 
                 nachLinks.setBackground(grau); //Farbanpassung
-        }
+    }
       
     /**
      * Ändert die Sichtbarkeit aller Gegenstände einer Wand

@@ -14,11 +14,6 @@ public class Inventar
 {
     /**Gegenstaende werden hier gespeichert*/
     private Gegenstand[] objects; //Array erzeugen
-    private Gegenstand object1; 
-    private Gegenstand object2;
-    private Gegenstand object3;
-    private Gegenstand object4;
-    private Gegenstand object5; //Objekte für's Inventar anlegen
     private Zettel zettel1;
     private Zettel zettel2;
     private Zettel zettel3;
@@ -47,42 +42,36 @@ public class Inventar
     */
     public void aufnehmen()
     {
-        // objects[0]=object1; 
-        // objects[1]=object2; 
-        // objects[2]=object3;
-        // objects[3]=object4;
-        // objects[4]=object5; //Plätze im Array für die Objekte festlegen, um das Ganze zu erleichtern
-        
         zettel1.getTextLabel().addMouseListener(new MouseAdapter() 
-                    {
-                        @Override
-                        public void mouseClicked(MouseEvent e) {objects[0] = zettel1;}
-                    }     
-                    ); 
+            {
+                @Override
+                public void mouseClicked(MouseEvent e) {objects[0] = zettel1;}
+            }     
+            ); 
         zettel2.getTextLabel().addMouseListener(new MouseAdapter() 
-                    {
-                        @Override
-                        public void mouseClicked(MouseEvent e) {objects[1] = zettel2;}
-                    }     
-                    ); 
+            {
+                @Override
+                public void mouseClicked(MouseEvent e) {objects[1] = zettel2;}
+            }     
+            ); 
         zettel3.getTextLabel().addMouseListener(new MouseAdapter() 
-                    {
-                        @Override
-                        public void mouseClicked(MouseEvent e) {objects[2] = zettel3;}
-                    }     
-                    ); 
+            {
+                @Override
+                public void mouseClicked(MouseEvent e) {objects[2] = zettel3;}
+            }     
+            ); 
         zettel4.getTextLabel().addMouseListener(new MouseAdapter() 
-                    {
-                        @Override
-                        public void mouseClicked(MouseEvent e) {objects[3] = zettel4;}
-                    }     
-                    ); 
+            {
+                @Override
+                public void mouseClicked(MouseEvent e) {objects[3] = zettel4;}
+            }     
+            ); 
         zettel5.getTextLabel().addMouseListener(new MouseAdapter() 
-                    {
-                        @Override
-                        public void mouseClicked(MouseEvent e) {objects[4] = zettel5;}
-                    }     
-                    ); 
+            {
+                @Override
+                public void mouseClicked(MouseEvent e) {objects[4] = zettel5;}
+            }     
+            ); 
         //Der jeweilige Zettel wird per MouseListener auf das passende Objekt gespeichert
     }
     
