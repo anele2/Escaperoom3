@@ -13,7 +13,7 @@ import java.awt.Color;
 public class Inventar
 {
     /**Gegenstaende werden hier gespeichert*/
-    private Gegenstand[] objects; //Array erzeugen
+    private Zettel[] objects; //Array erzeugen
     private Zettel zettel1;
     private Zettel zettel2;
     private Zettel zettel3;
@@ -26,7 +26,7 @@ public class Inventar
      */
     public Inventar()
     {
-        objects = new Gegenstand[5]; //Anzahl der "Plätze" im Array festlegen (5 für jeden Hinweis einen)
+        objects = new Zettel[5]; //Anzahl der "Plätze" im Array festlegen (5 für jeden Hinweis einen)
         inventarCont=new Container();
         //Vorerst noch hier erstellt; spaeter sollen die Gegenstaende per Parameteruebergabe dem Inventar hinzugefuegt werden
         //gegenstaende.add(new Zettel("Hier steht der Text des Zettels; also der Hinweis für das Snape-Raetsel"));
@@ -79,7 +79,7 @@ public class Inventar
      * @ Tjorven Bruns
      * Gibt das Objekt an der Stelle index-1 zurück 
      */
-    public Gegenstand getObjectAt(int index)
+    public Zettel getObjectAt(int index)
     {
         if(index<5||index>=0)
         {
@@ -91,7 +91,7 @@ public class Inventar
         }
     }
     
-    public Gegenstand[] getObjects()
+    public Zettel[] getObjects()
     {
         return objects;
     }

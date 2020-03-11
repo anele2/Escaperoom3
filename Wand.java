@@ -32,7 +32,7 @@ public class Wand
             e.printStackTrace();
         }
         
-    //Layout wird erstellt
+        //Layout wird erstellt
         GridLayout wandLayout = new GridLayout(1,1);
         wandCont.setLayout(wandLayout);
         

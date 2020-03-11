@@ -4,6 +4,7 @@ import java.awt.image.*;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.awt.Color;
+//import java.awt.Point;
 /**
  * SpielGUI bring die einzelnen ELemente des Spieles durch die beutzung der GUI fÃ¼r den Spieler zusammen.
  * 
@@ -41,6 +42,9 @@ public class SpielGUI
     
     /** Darstellung des Inventars */    
     private InventarAnzeige inventarAnz;
+    
+    /** Inventar mit GUI bekannt machen*/
+    private Inventar inventar;
     
     private JPopupMenu menue;
     
@@ -101,16 +105,32 @@ public class SpielGUI
         fenster.setVisible(true);
         fenster.setResizable(true);
     }
-    
-    private void erzeugePopUp()
+    /**
+     * @Elena Nehse und Tjorven Bruns
+     * Vorerst nur für Flasche
+    */
+    private void erzeugePopUp() 
     {
         menue = new JPopupMenu();
-        JMenuItem eintrag1 = new JMenuItem("benutzen");
+        JMenuItem eintrag1 = new JMenuItem("trinken");
         JMenuItem eintrag2 = new JMenuItem("einsammeln");
-        JMenuItem eintrag3 = new JMenuItem("anzeigen");
+        //JMenuItem eintrag3 = new JMenuItem("anzeigen");
         menue.add(eintrag1);
         menue.add(eintrag2);
-        menue.add(eintrag3);
+        eintrag1.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent e) {System.out.println("Du hast getrunken");}
+            }
+            );
+        //menue.add(eintrag3);
+        //if(gegenstand instanceof Zettel)
+        //{
+        //    eintrag2.addActionListener(new ActionListener()
+        //        {
+        //            public void actionPerformed(ActionEvent e) {inventar.aufnehmen();}
+        //        }
+        //        );
+        //}
     }
     
     /**
@@ -129,7 +149,7 @@ public class SpielGUI
         
         gegenstaendeHinzufügen();
         gegenstaendeSichtbarkeitAendern(0,true);
-       }
+    }
     
     /**
      * @author Elena Nehse, Paula Seidler
