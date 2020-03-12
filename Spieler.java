@@ -13,14 +13,16 @@ import java.awt.Color;
 public class Spieler
 {
     private int blickrichtung;
-    private Inventar inventar;    
+    private Inventar inventar;   
+    private SpielGUI gui1;
     /**
      * Standard-Konstruktor für Objekte der Klasse Spieler
      */
-    public Spieler()
+    public Spieler(SpielGUI gui)
     {
         blickrichtung = 0;
         inventar=new Inventar();
+        gui1=gui;
     }
 
     /**
@@ -64,11 +66,12 @@ public class Spieler
     }
     
     /**
-     * @param Setze den Wert der aktuellen Blickrichtung des Spielers.
+     * @param Die Flasche, die getrunken wird.          
      */
-    private void trinke(Gegenstand flasche)
+    public void trinke(Flasche flasche)
     {
-        //if(flasche.getInhalt()=="wein")
-        {}
+        if(flasche.getInhalt()=="wein") {gui1.setMitte(new JLabel("Ihgitt! Alkohol ist auch in diesem Fall keine Lösung!", JLabel.CENTER));} //Wenn Wein getrunken wird
+        if(flasche.getInhalt()=="gift") {gui1.setMitte(new JLabel("Oh, oh, das wars wohl...", JLabel.CENTER));} //Wenn Gift getrunken wird
+        //else{gui1.setMitte(new JLabel("Ein fader Geschmack von Nichts...", JLabel.CENTER));} //Mehr als vorübergehende Ausweichoption
     }
 }

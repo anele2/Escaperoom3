@@ -47,10 +47,10 @@ public class InventarAnzeige extends JPanel
         inventarflaeche.setBackground(braun);
         
         /**Die Buttons fuer die Gegenstaende werden erzeugt*/
-            for(int i=0; i<inventar.getObjects().length; i++){
+            for(int i=0; i<inventar.getGegenstaende().size(); i++){
                 try
                 {
-                    JButton gegenstandBtn = erstelleButton(inventar.getObjectAt(i));
+                    JButton gegenstandBtn = erstelleButton(inventar.getGegenstand(i));
                     inventarflaeche.add(gegenstandBtn);
                 }
                 catch(NullPointerException e)

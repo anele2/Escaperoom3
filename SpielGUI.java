@@ -68,7 +68,7 @@ public class SpielGUI
     public SpielGUI()
     {        
         raumEins = new Raum(); //Vorerst nur ein Raum
-        spieler = new Spieler(); //Hier wird der Spieler gespeichert
+        spieler = new Spieler(this); //Hier wird der Spieler gespeichert
         fensterErzeugen();        
     }
 
@@ -96,8 +96,6 @@ public class SpielGUI
         
         /** Erstellt eine Inventar-Anzeige, die wiederum ein Inventar-Objekt erzeugt*/
         erzeugeInv();
-        
-        erzeugePopUp();
         //test();
         
         /** Aufbau abgeschlossen - Komponenten arrangieren lassen */
@@ -106,32 +104,35 @@ public class SpielGUI
         fenster.setResizable(true);
     }
     /**
-     * @Elena Nehse und Tjorven Bruns
-     * Vorerst nur für Flasche
-    */
-    private void erzeugePopUp() 
+     * @author Tim Jascheck
+     * Die Idee dieser nicht Verwendeten Altnernativ-Version ist, ein Menue für jeden einzelnen Gegenstand zu verwenden, anstand immer das gleiche zu wervewnden, um da 
+     */
+    private JPopupMenu popUp(Gegenstand gegenstand) 
     {
-        menue = new JPopupMenu();
-        JMenuItem eintrag1 = new JMenuItem("trinken");
-        JMenuItem eintrag2 = new JMenuItem("einsammeln");
-        //JMenuItem eintrag3 = new JMenuItem("anzeigen");
-        menue.add(eintrag1);
-        menue.add(eintrag2);
-        eintrag1.addActionListener(new ActionListener()
-            {
-                public void actionPerformed(ActionEvent e) {System.out.println("Du hast getrunken");}
-            }
-            );
-        //menue.add(eintrag3);
-        //if(gegenstand instanceof Zettel)
-        //{
-        //    eintrag2.addActionListener(new ActionListener()
-        //        {
-        //            public void actionPerformed(ActionEvent e) {inventar.aufnehmen();}
-        //                                                          manager.remove(e.getSource())
-        //        }
-        //        );
-        //}
+        JPopupMenu menue = new JPopupMenu();
+        if(gegenstand instanceof Flasche)
+        {          
+            Flasche flasche = (Flasche)gegenstand;
+            JMenuItem eintragTrinken = new JMenuItem("trinken");;
+            eintragTrinken.addActionListener(new ActionListener()
+                {
+                    public void actionPerformed(ActionEvent e) {spieler.trinke(flasche);}
+                }
+                );            
+            menue.add(eintragTrinken);
+        }
+        if(gegenstand instanceof Zettel)
+        {
+            JMenuItem eintragTrinken = new JMenuItem("lesen");;
+            eintragTrinken.addActionListener(new ActionListener()
+                {
+                    public void actionPerformed(ActionEvent e) {//spieler.zettelAufnehmen();
+                    } 
+                }
+                );            
+            menue.add(eintragTrinken);
+        }
+        return menue;
     }
     
     /**
@@ -168,7 +169,7 @@ public class SpielGUI
                 aktuellerGegenstand.getAussehen().setLocation(aktuellerGegenstand.getXPosition(),aktuellerGegenstand.getYPosition());
                 aktuellerGegenstand.getAussehen().addMouseListener(new MouseListener() 
                     {
-                        public void mouseClicked(MouseEvent e) {menue.show(e.getComponent(),e.getX(), e.getY());}//if(aktuellerGegenstand==instance spieler.trinke(); }//menü öffnen test:spieler.nachRechtsKucken(); wandWechsel(spieler.getBlickrichtung());}//eine Änderung
+                        public void mouseClicked(MouseEvent e) {popUp(aktuellerGegenstand).show(e.getComponent(),e.getX(), e.getY());}
                         public void mouseEntered(MouseEvent e) {}
                         public void mouseExited(MouseEvent e) {}
                         public void mousePressed(MouseEvent e) {}
