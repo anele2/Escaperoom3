@@ -28,13 +28,16 @@ public class Raum
         wandN.addGegenstand(new Flasche("gift","src/flroterdeckel.jpg",890,450,50,100));
         wandN.addGegenstand(new Flasche("weiter","src/flweiss.jpg",950,450,50,100));
         //wandN.addGegenstand(new Zettel("src/Brief.jpg",950,450,50,100));
-        wandN.addGegenstand(new Zettel("Ich weiß nicht"));
+        wandN.addGegenstand(new Zettel("Ich weiß nicht",700,200,30,20));
+        
         wandO=new Wand("Osten","src/wändevorlagekleiner.jpg");
-        wandO.addGegenstand(new Zettel("was hier rein soll."));
+        wandO.addGegenstand(new Zettel("was hier rein soll.",500,200,200,200));
+        
         wandS=new Wand("Sueden","src/wändevorlagekleiner.jpg");
-        wandS.addGegenstand(new Zettel("Daher"));
+        wandS.addGegenstand(new Zettel("Daher",150,520,200,200));
+        
         wandW=new Wand("Westen","src/wändevorlagekleiner.jpg");
-        wandW.addGegenstand(new Zettel("erstmal irgendwas"));
+        wandW.addGegenstand(new Zettel("erstmal irgendwas",50,250,200,200));
     }
 
     /**

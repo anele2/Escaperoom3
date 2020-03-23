@@ -24,9 +24,9 @@ public class Zettel extends Gegenstand
     /**
      * Konstruktor für Objekte der Klasse GegenstandEins
      */
-    public Zettel(String textZet)
+    public Zettel(String textZet, int ortX, int ortY, int breite, int höhe)
     {        
-        super("src/zettel.jpg",50,20,200,200); //Vorerst nur ein Standartkonstruktor, kann spaeter aufregender gestaltet werden   
+        super("src/zettel.jpg", ortX, ortY, breite, höhe); 
         text = textZet; 
         constructJLabel();
     }

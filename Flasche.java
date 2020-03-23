@@ -19,6 +19,7 @@ public class Flasche extends Gegenstand
     {
         super(bildDateipfad,ortX,ortY, breite, höhe);//siehe Gegenstand
         inhalt=fluessigkeit;
+        voll = true;
     }
 
     /** 
