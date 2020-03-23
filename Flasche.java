@@ -1,14 +1,14 @@
-
 import javax.swing.*;
 /**
  * Write a description of class Flaschen here.
  *
- * @Elena Nehse
- * @28.02.2020
+ * @Elena Nehse, Tim Jascheck
+ * @12.03.2020
  */
 public class Flasche extends Gegenstand
 {
-    private String inhalt;
+    private String inhalt; //Welcher Trank in der Flasche ist
+    private boolean voll; //Speichert, ob aus der Flasche bereits getrunken wurde, noch keine Funktionalitaet, aber evtl. fuer erweiterungen nuetzlich
     /**
      * Konstruktor fuer Objekte der Klasse Flasche
      * @param String bildDateipfad: Verweis auf das Bild, durch das die Flasche dargestellt werden soll
@@ -21,13 +21,13 @@ public class Flasche extends Gegenstand
         inhalt=fluessigkeit;
     }
 
-    /** folgende Methoden müssen noch implementiert werden, da abstrakt in der Oberklasse vorhanden
-     * Änderung nötig!
+    /** 
+     * Basis-Methoden
      */
-    public String getName(){return "falsch gelaufen";}
-    public String getInhalt(){return inhalt;}    
+    public String getName(){return "Flasche";}
+    public String getInhalt(){return inhalt;}        
+    public void setVoll(boolean voll1){voll=voll1;}
+    /**Voerst noch unfunktional*/
     public JLabel getTextLabel(){return new JLabel("falsch gelaufen");}
-    
-    
 }
 

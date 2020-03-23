@@ -8,7 +8,7 @@ import java.awt.Color;
  * Spieler-Klasse. Kann mit der Gui interagieren. 
  * 
  * @author Mina Granzin, Tim Jascheck  
- * @21.02.2020
+ * @12.03.2020
  */
 public class Spieler
 {
@@ -70,8 +70,10 @@ public class Spieler
      */
     public void trinke(Flasche flasche)
     {
+        gui1.gegenstaendeSichtbarkeitAendern(blickrichtung, false);
         if(flasche.getInhalt()=="wein") {gui1.setMitte(new JLabel("Ihgitt! Alkohol ist auch in diesem Fall keine Lösung!", JLabel.CENTER));} //Wenn Wein getrunken wird
         if(flasche.getInhalt()=="gift") {gui1.setMitte(new JLabel("Oh, oh, das wars wohl...", JLabel.CENTER));} //Wenn Gift getrunken wird
-        //else{gui1.setMitte(new JLabel("Ein fader Geschmack von Nichts...", JLabel.CENTER));} //Mehr als vorübergehende Ausweichoption
+        //Hier kommen spaeter noch mehr Optionen hin, fuer die anderen Traenke
+        //else{gui1.setMitte(new JLabel("Ein fader Geschmack von Nichts...", JLabel.CENTER));} //Mehr als vorübergehende Ausweichoption    
     }
 }

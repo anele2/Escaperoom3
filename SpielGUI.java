@@ -4,11 +4,10 @@ import java.awt.image.*;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.awt.Color;
-//import java.awt.Point;
 /**
  * SpielGUI bring die einzelnen ELemente des Spieles durch die beutzung der GUI fÃ¼r den Spieler zusammen.
  * 
- * @Tim Jascheck; Mina Granzin; Elena Nehse; Paula Seidler (wenn bei einer Methode/Code-Abschnitt kein Autor explizit erwaehnt ist, waren alle Klassen-Autoren beteiligt)
+ * @Tim Jascheck; Mina Granzin; Elena Nehse; Paula Seidler; Tjorven Bruns (wenn bei einer Methode/Code-Abschnitt kein Autor explizit erwaehnt ist, waren alle Klassen-Autoren beteiligt)
  * @11.02.2020
  */
 public class SpielGUI
@@ -20,19 +19,19 @@ public class SpielGUI
         Osten = 1;
         Sueden= 2;
         Westen = 3;
-     */
-    
-    private Gegenstand gegenstand;
-    
-    
+     */ 
+  
     /**Der Spieler*/
     private Spieler spieler;
     
     /** Die Raeume des Spiels */  
-    private Raum raumEins;
+    private Raum raumEins; //Vorerst gibt es nur einen Raum im Spiel
     
     /** Hier spielt die Musik */
     private JFrame fenster;
+    /**Die Hoehe und Laenge des Fensters*/
+    private int length = 1600;
+    private int height = 1000;
     
     /** Aktuelle Wand. */ 
     private Container aktuelleWand;
@@ -45,9 +44,7 @@ public class SpielGUI
     
     /** Inventar mit GUI bekannt machen*/
     private Inventar inventar;
-    
-    private JPopupMenu menue;
-    
+        
     /** Farben fuer die GUI. 3 Arten von Blau + Grau + Braun */
         Color hellBlau = new Color(225, 236, 255);
         Color blau = new Color(205, 224, 255);
@@ -55,8 +52,7 @@ public class SpielGUI
         Color grau = new Color(180, 180, 180);
         Color braun = new Color(230, 176, 170);
     
-    private int length = 1600;
-    private int height = 1000;
+    
         
     public static void main(String[] args) {
         new SpielGUI();
@@ -77,9 +73,7 @@ public class SpielGUI
      */
     public void fensterErzeugen()
     {
-        fenster = new JFrame("Escape-Room"); 
-        
-        //Container contentPane = fenster.getContentPane();
+        fenster = new JFrame("Escape-Room"); ;
         
         /** Ein Border-Layout schien als Grundbaustein des Spieles sinnvoll*/
         BorderLayout mainLayout = new BorderLayout();
@@ -96,7 +90,6 @@ public class SpielGUI
         
         /** Erstellt eine Inventar-Anzeige, die wiederum ein Inventar-Objekt erzeugt*/
         erzeugeInv();
-        //test();
         
         /** Aufbau abgeschlossen - Komponenten arrangieren lassen */
         fenster.setSize(length, height); //An den Zahlen kann nochmal gefeilt werden
@@ -104,35 +97,46 @@ public class SpielGUI
         fenster.setResizable(true);
     }
     /**
-     * @author Tim Jascheck
-     * Die Idee dieser nicht Verwendeten Altnernativ-Version ist, ein Menue für jeden einzelnen Gegenstand zu verwenden, anstand immer das gleiche zu wervewnden, um da 
+     * @author Tjorven Bruns, Tim Jascheck
+     * Hier werden die PopUp Menues für die Gegenstaende erzeugt
+     * @param gegenstand Der Gegenstand, der ein Pop-Up-Menue bekommt
+     * @return Das Pop-Up Menue fuer den Gegenstand
      */
     private JPopupMenu popUp(Gegenstand gegenstand) 
     {
         JPopupMenu menue = new JPopupMenu();
-        if(gegenstand instanceof Flasche)
+        if(gegenstand instanceof Flasche) //Ein Pop-Up für Flasche
         {          
-            Flasche flasche = (Flasche)gegenstand;
-            JMenuItem eintragTrinken = new JMenuItem("trinken");;
+            Flasche flasche = (Flasche)gegenstand; //Gegenstand wird als Flasche zwischengespeichtert
+            JMenuItem eintragTrinken = new JMenuItem("trinken");
             eintragTrinken.addActionListener(new ActionListener()
                 {
-                    public void actionPerformed(ActionEvent e) {spieler.trinke(flasche);}
+                    public void actionPerformed(ActionEvent e) {spieler.trinke(flasche); flasche.setVoll(false);} //Die Flasche wird getrunken
                 }
                 );            
             menue.add(eintragTrinken);
         }
-        if(gegenstand instanceof Zettel)
+        if(gegenstand instanceof Zettel) //Ein Pop-Up für Zettel, unvollstaendig, noch koennen die Zettel nicht aufgenommmen werden
         {
-            JMenuItem eintragTrinken = new JMenuItem("lesen");;
+            JMenuItem eintragTrinken = new JMenuItem("lesen");
             eintragTrinken.addActionListener(new ActionListener()
                 {
-                    public void actionPerformed(ActionEvent e) {//spieler.zettelAufnehmen();
+                    public void actionPerformed(ActionEvent e) {//spieler.zettelAufnehmen();, noch nicht implementiert
                     } 
                 }
                 );            
             menue.add(eintragTrinken);
         }
         return menue;
+    }
+    
+    /**
+     * @return Den Spieler der GUI
+     * @author Tim Jascheck
+     */
+    public Spieler getSpieler()
+    {
+        return spieler;
     }
     
     /**
@@ -144,12 +148,12 @@ public class SpielGUI
     private void erzeugeWandanzeige()
     {
         manager = fenster.getLayeredPane();//Container mit mehreren Ebenen
-        gegenstaendeHinzufügen();
-        gegenstaendeSichtbarkeitAendern(0,true);
+        gegenstaendeHinzufügen(); //Die Gegenstaende werden hinzugefuegt
+        gegenstaendeSichtbarkeitAendern(0,true); //Die Gegenstaende werden angezeigt
     }
     
     /**
-     * @author Elena Nehse, Paula Seidler
+     * @author Elena Nehse, Paula Seidler, Tim Jascheck, Tjorven Bruns
      * alle Gegenstände des Raumes werden dem Fenster hinzugefügt, sind allerdings nicht sichtbar
      */   
     private void gegenstaendeHinzufügen()
@@ -163,13 +167,12 @@ public class SpielGUI
                 //Abbild des Gegenstandes wird eingefügt, an die richtige Stelle verschoben und unsichtbar gemacht
                 Gegenstand aktuellerGegenstand = raumEins.getWand(w).getGegenstaende().get(i);//zwischenspeicher
                 manager.add(aktuellerGegenstand.getAussehen(),new Integer(platzImManager)); 
-                platzImManager++;
-                manager.setLayer(aktuellerGegenstand.getAussehen(), 100);
-                aktuellerGegenstand.getAussehen().setVisible(false);
+                platzImManager++; 
+                aktuellerGegenstand.getAussehen().setVisible(false); 
                 aktuellerGegenstand.getAussehen().setLocation(aktuellerGegenstand.getXPosition(),aktuellerGegenstand.getYPosition());
                 aktuellerGegenstand.getAussehen().addMouseListener(new MouseListener() 
                     {
-                        public void mouseClicked(MouseEvent e) {popUp(aktuellerGegenstand).show(e.getComponent(),e.getX(), e.getY());}
+                        public void mouseClicked(MouseEvent e) {popUp(aktuellerGegenstand).show(e.getComponent(),e.getX(), e.getY());} //Hier wird dem Gegenstand eine Pop-UIp Menue hinzugefuegt
                         public void mouseEntered(MouseEvent e) {}
                         public void mouseExited(MouseEvent e) {}
                         public void mousePressed(MouseEvent e) {}
@@ -197,8 +200,7 @@ public class SpielGUI
                     public void actionPerformed(ActionEvent e) { int alteBlick = spieler.getBlickrichtung(); spieler.nachRechtsKucken(); wandWechsel(spieler.getBlickrichtung(),alteBlick);}
                 }     
                 );             
-    }
-    
+    }    
     public void nachLinksButton()
     {
         JButton nachLinks = new JButton("<-");  //Vielleicht kann man sich hier spÃ¤ter etwas schÃ¶neres Ã¼berlegen
@@ -220,7 +222,7 @@ public class SpielGUI
      */    
     public void gegenstaendeSichtbarkeitAendern(int wand, boolean sichtbar)
     {
-        int anzahlGegenstaende = raumEins.getWand(wand).getGegenstaende().size();
+        int anzahlGegenstaende = raumEins.getWand(wand).getGegenstaende().size(); //Die Anzahl der Gegenstaende wird gespeichert
             for(int i=0; i<anzahlGegenstaende; i++)
             {
                 raumEins.getWand(wand).getGegenstaende().get(i).getAussehen().setVisible(sichtbar);
@@ -244,13 +246,15 @@ public class SpielGUI
     
     /**
      * Zeige eine bestimmte Wand
-     * @param himmelsrichtung Gebe die Himmelsrichtung an, dessen Wand betrachtet wird. (0-3 = Norden-Westen)
+     * @param alteHimmelsrichtung Gebe die Himmelsrichtung an, dessen Wand zurzeit betrachtet wird. (0-3 = Norden-Westen)
+     * @param neueHimmelsrichtung Gebe die Himmelsrichtung der neuen Wand an
      */
     public void wandWechsel(int neueHimmelsrichtung, int alteHimmelsrichtung)
     {
-        //Zugriff Ã¼ber den Raum auf die Wand. SpÃ¤ter muss noch ein "aktueller Raum" als Attribut hinzugefuegt werden
+        //Zugriff Ã¼ber den Raum auf die Wand. 
         setMitte(raumEins.getWand(neueHimmelsrichtung).getWandCon());
         
+        //Die Sichtbarkeit der Gegenstaende wird demenstprechend angepasst
         gegenstaendeSichtbarkeitAendern(alteHimmelsrichtung, false);
         gegenstaendeSichtbarkeitAendern(neueHimmelsrichtung, true);
         

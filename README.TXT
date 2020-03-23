@@ -1,12 +1,7 @@
 ------------------------------------------------------------------------
-This is the project README file. Here, you should describe your project.
-Tell the reader (someone who does not know anything about this project)
-all he/she needs to know. The comments should usually include at least:
-------------------------------------------------------------------------
-
-PROJECT TITLE:
-PURPOSE OF PROJECT:
-VERSION or DATE:
-HOW TO START THIS PROJECT:
-AUTHORS:
-USER INSTRUCTIONS:
+PROJECT TITLE: Escape-Room
+PURPOSE OF PROJECT: Informatik GK, 2020
+VERSION or DATE: 12.03.20
+HOW TO START THIS PROJECT: Run the constructor of the GUI
+AUTHORS: Mina Granzin, Tim Jascheck, Elena Nehse, Paula Seidler und Tjorven Bruns
+USER INSTRUCTIONS: See manual

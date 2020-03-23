@@ -26,11 +26,14 @@ public class Zettel extends Gegenstand
      */
     public Zettel(String textZet)
     {        
-        super("src/zettel.jpg",50,20,200,200);    
+        super("src/zettel.jpg",50,20,200,200); //Vorerst nur ein Standartkonstruktor, kann spaeter aufregender gestaltet werden   
         text = textZet; 
         constructJLabel();
     }
     
+    /**
+     * Das JLabel fuer den Zettel wird gebaut
+     */
     public void constructJLabel()
     {
         /**
@@ -63,7 +66,6 @@ public class Zettel extends Gegenstand
      */
     public String getName() {
         return "Zettel";
-    }
-    
+    }    
 }
 

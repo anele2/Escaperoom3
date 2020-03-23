@@ -7,8 +7,8 @@ import java.awt.Color;
 /**
  * Inventar Anzeige. Kann mit der Gui interagieren. 
  * 
- * @Tim Jascheck, Mina Granzin, Tjorven Bruns 
- * @21.02.2020
+ * @Tim Jascheck, Mina Granzin
+ * @12.03.2020
  */
 public class InventarAnzeige extends JPanel
 {
@@ -36,7 +36,6 @@ public class InventarAnzeige extends JPanel
 
     /**
      * Die Gegenstandsbuttons werden erzeugt (entsprechent der Anzahl (mit den Namen der in ihnen gespeicherten Gegenstaenden))
-     * 
      */
     public void buttonInventar()
     {    
@@ -64,7 +63,8 @@ public class InventarAnzeige extends JPanel
         quitInv.addActionListener(new ActionListener() 
             {
                 public void actionPerformed(ActionEvent e) { 
-                    gui.standardAnzeigen();
+                    gui.standardAnzeigen(); //So kehren wir zu unserer derzeitigen Wand zurueck
+                    gui.gegenstaendeSichtbarkeitAendern(gui.getSpieler().getBlickrichtung(), true); //Gegenstaende werden angezeigt
                 }
             }     
             ); 
@@ -79,11 +79,12 @@ public class InventarAnzeige extends JPanel
      * Ein Gegenstandsbutton wird erzeugt, mit dem Namen dem in ihm gespeicherten Gegenstand 
      */
     private JButton erstelleButton(Gegenstand g) {
-        JButton btn = new JButton(g.getName());
+        JButton btn = new JButton(g.getName());        
         btn.addActionListener(new ActionListener()
             {
                 public void actionPerformed(ActionEvent e){
-                    gui.setMitte(g.getTextLabel());
+                    gui.gegenstaendeSichtbarkeitAendern(gui.getSpieler().getBlickrichtung(), false); //Die Sichtbarkeit der Gegenstaende wird deaktiviert
+                    gui.setMitte(g.getTextLabel());  //Der Name wird angezeigt                  
                 }
             }
             );
