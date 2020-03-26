@@ -13,16 +13,15 @@ import java.awt.Color;
 public class Spieler
 {
     private int blickrichtung;
-    private Inventar inventar;   
-    private SpielGUI gui1;
+    private Inventar inventar;
+    private String verfassung; //wohlbefinden, kann durch Interaktion mit Gegenständen beeinflusst werden
     /**
      * Standard-Konstruktor für Objekte der Klasse Spieler
      */
-    public Spieler(SpielGUI gui)
+    public Spieler()
     {
         blickrichtung = 0;
         inventar=new Inventar();
-        gui1=gui;
     }
 
     /**
@@ -66,14 +65,22 @@ public class Spieler
     }
     
     /**
+     * @return gibt den Zustand des Spielers zurück
+     */
+    public String getVerfassung()
+    {
+        return verfassung;
+    }
+    
+    /**
      * @param Die Flasche, die getrunken wird.          
      */
     public void trinke(Flasche flasche)
     {
-        gui1.gegenstaendeSichtbarkeitAendern(blickrichtung, false);
-        if(flasche.getInhalt()=="wein") {gui1.setMitte(new JLabel("Ihgitt! Alkohol ist auch in diesem Fall keine Lösung!", JLabel.CENTER));} //Wenn Wein getrunken wird
-        if(flasche.getInhalt()=="gift") {gui1.setMitte(new JLabel("Oh, oh, das wars wohl...", JLabel.CENTER));} //Wenn Gift getrunken wird
+        if(flasche.getInhalt()=="wein") {verfassung = "angetrunken";} //Wenn Wein getrunken wird
+        if(flasche.getInhalt()=="gift") {verfassung = "tot";} //Wenn Gift getrunken wird
+        if(flasche.getInhalt()=="weiterTrank") {verfassung = "bereit";} //Wenn der richtige Trank getrunken wird
         //Hier kommen spaeter noch mehr Optionen hin, fuer die anderen Traenke
-        //else{gui1.setMitte(new JLabel("Ein fader Geschmack von Nichts...", JLabel.CENTER));} //Mehr als vorübergehende Ausweichoption    
+        flasche.setVoll(false);
     }
 }

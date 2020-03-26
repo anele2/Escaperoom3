@@ -26,7 +26,8 @@ public class Flasche extends Gegenstand
      * Basis-Methoden
      */
     public String getName(){return "Flasche";}
-    public String getInhalt(){return inhalt;}        
+    public String getInhalt(){return inhalt;}
+    public boolean getFuelle(){return voll;}
     public void setVoll(boolean voll1){voll=voll1;}
     /**Voerst noch unfunktional*/
     public JLabel getTextLabel(){return new JLabel("falsch gelaufen");}

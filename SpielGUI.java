@@ -64,7 +64,7 @@ public class SpielGUI
     public SpielGUI()
     {        
         raumEins = new Raum(); //Vorerst nur ein Raum
-        spieler = new Spieler(this); //Hier wird der Spieler gespeichert
+        spieler = new Spieler(); //Hier wird der Spieler gespeichert
         fensterErzeugen();        
     }
 
@@ -111,14 +111,15 @@ public class SpielGUI
             JMenuItem eintragTrinken = new JMenuItem("trinken");
             eintragTrinken.addActionListener(new ActionListener()
                 {
-                    public void actionPerformed(ActionEvent e) {spieler.trinke(flasche); flasche.setVoll(false);} //Die Flasche wird getrunken
+                    public void actionPerformed(ActionEvent e) {if(flasche.getFuelle() == true){spieler.trinke(flasche); reaktion();}
+                                                                else{setMitte(new JLabel("Der letzte Tropfen ist verronnen... Diese Flasche ist bereits leer.", JLabel.CENTER));}} //Die Flasche wird getrunken
                 }
                 );            
             menue.add(eintragTrinken);
         }
         if(gegenstand instanceof Zettel) //Ein Pop-Up für Zettel, unvollstaendig, noch koennen die Zettel nicht aufgenommmen werden
         {
-            JMenuItem eintragTrinken = new JMenuItem("lesen");
+            JMenuItem eintragTrinken = new JMenuItem("einsammeln");
             eintragTrinken.addActionListener(new ActionListener()
                 {
                     public void actionPerformed(ActionEvent e) {//spieler.zettelAufnehmen();, noch nicht implementiert
@@ -131,6 +132,19 @@ public class SpielGUI
     }
     
     /**
+     * @author Elena Nehse
+     * Verändert die GUI (,zeigt ein Textlabel an,) um die Auswirkungen einer Handlung darzustellen.
+     * genutzt für FlascheTrinken
+     */
+    public void reaktion()
+    {
+        String auslöser = spieler.getVerfassung();
+        if(auslöser == "angetrunken"){setMitte(new JLabel("Ihgitt! Alkohol ist auch in diesem Fall keine Lösung!", JLabel.CENTER));}
+        if(auslöser == "tot"){setMitte(new JLabel("Oh, oh, das wars wohl...", JLabel.CENTER));}
+        if(auslöser == "bereit"){setMitte(new JLabel("Herzlichen Gl\u00FCckwunsch! Du hast das R\u00E4tsel erfolgreich gel\u00F6st", JLabel.CENTER));}
+    }
+    
+    /**
      * @return Den Spieler der GUI
      * @author Tim Jascheck
      */
@@ -140,6 +154,7 @@ public class SpielGUI
     }
     
     /**
+     * Als extramethode überhaupt nötig?
      * Ebenen werden eingefügt
      * Wand wird eingefügt
      * darüber werden eventuelle Hinweise gelegt
@@ -148,7 +163,7 @@ public class SpielGUI
     private void erzeugeWandanzeige()
     {
         manager = fenster.getLayeredPane();//Container mit mehreren Ebenen
-        gegenstaendeHinzufügen(); //Die Gegenstaende werden hinzugefuegt
+        gegenstaendeHinzufügen(); //Die Gegenstaende werden unsichtbar hinzugefuegt
         gegenstaendeSichtbarkeitAendern(0,true); //Die Gegenstaende werden angezeigt
     }
     
