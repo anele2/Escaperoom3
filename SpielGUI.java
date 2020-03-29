@@ -141,7 +141,7 @@ public class SpielGUI
         String auslöser = spieler.getVerfassung();
         if(auslöser == "angetrunken"){setMitte(new JLabel("Ihgitt! Alkohol ist auch in diesem Fall keine Lösung!", JLabel.CENTER));}
         if(auslöser == "tot"){setMitte(new JLabel("Oh, oh, das wars wohl...", JLabel.CENTER));}
-        if(auslöser == "bereit"){setMitte(new JLabel("Herzlichen Gl\u00FCckwunsch! Du hast das R\u00E4tsel erfolgreich gel\u00F6st", JLabel.CENTER));}
+        if(auslöser == "bereit"){setMitte(new JLabel("Herzlichen Glueckwunsch! Du hast das Raetsel erfolgreich geloest", JLabel.CENTER));}
     }
     
     /**
@@ -194,7 +194,7 @@ public class SpielGUI
                         public void mouseReleased(MouseEvent e) {}
                     }     
                     ); //Gegenstand kann auf Mauszustände reagieren
-                                
+                            
             }
         }
         

@@ -73,13 +73,14 @@ public class Spieler
     }
     
     /**
-     * @param Die Flasche, die getrunken wird.          
+     * @param Die Flasche, die getrunken wird.
+     * @ein paar kleine Aenderungen von Tjorven Bruns
      */
     public void trinke(Flasche flasche)
     {
         if(flasche.getInhalt()=="wein") {verfassung = "angetrunken";} //Wenn Wein getrunken wird
         if(flasche.getInhalt()=="gift") {verfassung = "tot";} //Wenn Gift getrunken wird
-        if(flasche.getInhalt()=="weiterTrank") {verfassung = "bereit";} //Wenn der richtige Trank getrunken wird
+        if(flasche.getInhalt()=="vorwaerts"||flasche.getInhalt()=="zurueck") {verfassung = "bereit";} //Wenn der richtige Trank getrunken wird
         //Hier kommen spaeter noch mehr Optionen hin, fuer die anderen Traenke
         flasche.setVoll(false);
     }

@@ -15,18 +15,19 @@ public class Raum
     private Wand error = new Wand("Norden","src/wandRot.jpg");
     /**
      * Konstruktor für Objekte der Klasse Raum
+     * @ein paar kleine Änderungen von Tjorven Bruns
      */
     public Raum()
     {
         //Erstellt vier Wände mit den dementsprechent benannten JLabels
         wandN=new Wand("Norden","src/wandMinaBlau.jpg");
-        wandN.addGegenstand(new Flasche("wein","src/flblau.jpg",590,450,50,100));
+        wandN.addGegenstand(new Flasche("gift","src/flblau.jpg",590,450,50,100));
         wandN.addGegenstand(new Flasche("wein","src/flbraun.jpg",650,450,50,100));
-        wandN.addGegenstand(new Flasche("wein","src/flbunt.jpg",710,450,50,100));
+        wandN.addGegenstand(new Flasche("vorwaerts","src/flbunt.jpg",710,450,50,100));
         wandN.addGegenstand(new Flasche("gift","src/fldurchs.jpg",770,450,50,100));
         wandN.addGegenstand(new Flasche("gift","src/flgruen.jpg",830,450,50,100));
-        wandN.addGegenstand(new Flasche("gift","src/flroterdeckel.jpg",890,450,50,100));
-        wandN.addGegenstand(new Flasche("weiter","src/flweiss.jpg",950,450,50,100));
+        wandN.addGegenstand(new Flasche("wein","src/flroterdeckel.jpg",890,450,50,100));
+        wandN.addGegenstand(new Flasche("zurueck","src/flweiss.jpg",950,450,50,100));
         //wandN.addGegenstand(new Zettel("src/Brief.jpg",950,450,50,100));
         wandN.addGegenstand(new Zettel("Ich weiß nicht",700,200,30,20));
         
