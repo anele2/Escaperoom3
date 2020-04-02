@@ -21,6 +21,10 @@ public class InventarAnzeige extends JPanel
         
     private SpielGUI gui;    
     private Inventar inventar;
+    private JPanel inventarflaeche;
+    private boolean gibtAnsichtSchliessen = false;
+    private boolean[] gibtButton;
+
     
     /**
      * Konstruktor fuer die Inventar-Anzeige
@@ -30,12 +34,17 @@ public class InventarAnzeige extends JPanel
     public InventarAnzeige(SpielGUI g, Inventar inv)
     {
         gui = g;
-        inventar = inv;        
-        buttonInventar();    
+        inventar = inv; 
+        buttonInventar();
+        gibtButton=new boolean[5];
+        for(int i=0;i<gibtButton.length;i++) //klären, dass noch kein Button existiert
+        gibtButton[i]=false;
+        //ansichtSchliessen();
     }
 
     /**
      * Die Gegenstandsbuttons werden erzeugt (entsprechent der Anzahl (mit den Namen der in ihnen gespeicherten Gegenstaenden))
+     * @Ergaenzungen von Tjorven Bruns mit Unterstützung von Jupp Bruns
      */
     public void buttonInventar()
     {    
@@ -45,22 +54,27 @@ public class InventarAnzeige extends JPanel
         inventarflaeche.setLayout(inventarLayout);
         inventarflaeche.setBackground(braun);
         
-        /**Die Buttons fuer die Gegenstaende werden erzeugt*/
-            for(int i=0; i<inventar.getGegenstaende().size(); i++){
+        /**Die Buttons fuer die Gegenstaende werden erzeugt und dabei dafür gesorgt, dass sie nur einmal vorkommen*/
+        
+        for(int i=0; i<inventar.getGegenstaende().size(); i++){
                 try
                 {
-                    JButton gegenstandBtn = erstelleButton(inventar.getGegenstand(i));
-                    inventarflaeche.add(gegenstandBtn);
+                    if(!gibtButton[i]){
+                        JButton gegenstandBtn = erstelleButton(inventar.getGegenstand(i)); //die Methode erstelleButton wird aufgerufen und der Gegenstand abgefragt
+                        inventarflaeche.add(gegenstandBtn); //der Button wird der Inventarfläche hinzugefügt
+                        gibtButton[i]=true; //dieser Button existiert jetzt
+                    }
                 }
                 catch(NullPointerException e)
                 {
                 }
                 //Damit falls kein Hinweis im Array gespeichert ist, keine Fehlermeldung kommt
-            }      
-        
-        /**Der Button um die Ansicht des Ausgewahlten Gegenstands zu schliessen; denkbare Erweiterung: Diesen Button nur Anzeigen, wenn zurzeit ein Gegensand angezeigt wird*/
-        JButton quitInv = new JButton("Ansicht schliessen");
-        quitInv.addActionListener(new ActionListener() 
+            }   
+        if(!gibtAnsichtSchliessen) //es wird sichergestellt dass nur einma "Ansicht schließen" erzeugt wird   
+        {
+            /**Der Button um die Ansicht des Ausgewahlten Gegenstands zu schliessen; denkbare Erweiterung: Diesen Button nur Anzeigen, wenn zurzeit ein Gegensand angezeigt wird*/
+            JButton quitInv = new JButton("Ansicht schliessen");
+            quitInv.addActionListener(new ActionListener() 
             {
                 public void actionPerformed(ActionEvent e) { 
                     gui.standardAnzeigen(); //So kehren wir zu unserer derzeitigen Wand zurueck
@@ -70,13 +84,15 @@ public class InventarAnzeige extends JPanel
             ); 
             inventarflaeche.add(quitInv);
             quitInv.setBackground(braun);
+            gibtAnsichtSchliessen = true;
+        }
+        /**Die Inventarflaeche wird dem Objekt-JPanel hinzugefuegt/eingesetzt*/ 
+        this.add(inventarflaeche); 
         
-        /**Die Inventarflaeche wird dem Objekt-JPanel hinzugefuegt/eingesetzt*/    
-        add(inventarflaeche);                
     }
     
     /**
-     * Ein Gegenstandsbutton wird erzeugt, mit dem Namen dem in ihm gespeicherten Gegenstand 
+     * Ein Gegenstandsbutton wird erzeugt, mit dem Namen des in ihm gespeicherten Gegenstands 
      */
     private JButton erstelleButton(Gegenstand g) {
         JButton btn = new JButton(g.getName());        

@@ -31,6 +31,8 @@ public class Zettel extends Gegenstand
         constructJLabel();
     }
     
+    public String getText(){return text;}
+    
     /**
      * Das JLabel fuer den Zettel wird gebaut
      */

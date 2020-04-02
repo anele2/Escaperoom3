@@ -73,8 +73,7 @@ public class SpielGUI
      */
     public void fensterErzeugen()
     {
-        fenster = new JFrame("Escape-Room"); ;
-        
+        fenster = new JFrame("Escape-Room"); 
         /** Ein Border-Layout schien als Grundbaustein des Spieles sinnvoll*/
         BorderLayout mainLayout = new BorderLayout();
         fenster.setLayout(mainLayout);
@@ -94,8 +93,9 @@ public class SpielGUI
         /** Aufbau abgeschlossen - Komponenten arrangieren lassen */
         fenster.setSize(length, height); //An den Zahlen kann nochmal gefeilt werden
         fenster.setVisible(true);
-        fenster.setResizable(true);
+        fenster.setResizable(false); //Fenster behält die Groesse
     }
+    
     /**
      * @author Tjorven Bruns, Tim Jascheck
      * Hier werden die PopUp Menues für die Gegenstaende erzeugt
@@ -119,10 +119,15 @@ public class SpielGUI
         }
         if(gegenstand instanceof Zettel) //Ein Pop-Up für Zettel, unvollstaendig, noch koennen die Zettel nicht aufgenommmen werden
         {
+            Zettel zettel = (Zettel)gegenstand;//Gegenstand wird als Zettel zwischengespeichtert
             JMenuItem eintragTrinken = new JMenuItem("einsammeln");
             eintragTrinken.addActionListener(new ActionListener()
                 {
-                    public void actionPerformed(ActionEvent e) {//spieler.zettelAufnehmen();, noch nicht implementiert
+                    public void actionPerformed(ActionEvent e)
+                    {
+                        spieler.zettelAufnehmen(zettel);
+                        inventarAnz.buttonInventar();
+                        zettel.getAussehen().setVisible(false);
                     } 
                 }
                 );            
@@ -139,6 +144,7 @@ public class SpielGUI
     public void reaktion()
     {
         String auslöser = spieler.getVerfassung();
+        gegenstaendeSichtbarkeitAendern(getSpieler().getBlickrichtung(), false);
         if(auslöser == "angetrunken"){setMitte(new JLabel("Ihgitt! Alkohol ist auch in diesem Fall keine Lösung!", JLabel.CENTER));}
         if(auslöser == "tot"){setMitte(new JLabel("Oh, oh, das wars wohl...", JLabel.CENTER));}
         if(auslöser == "bereit"){setMitte(new JLabel("Herzlichen Glueckwunsch! Du hast das Raetsel erfolgreich geloest", JLabel.CENTER));}

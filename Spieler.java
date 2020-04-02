@@ -23,6 +23,19 @@ public class Spieler
         blickrichtung = 0;
         inventar=new Inventar();
     }
+    
+    /**
+     * @Tjorven Bruns
+    */
+    public void zettelAufnehmen(Zettel zettel)
+    {
+        if(zettel.getText()=="Ich weiß nicht"){inventar.addZettel(1);}
+        if(zettel.getText()=="was hier rein soll."){inventar.addZettel(2);}
+        if(zettel.getText()=="Daher"){inventar.addZettel(3);}
+        if(zettel.getText()=="Ich mache auch mit"){inventar.addZettel(4);}
+        if(zettel.getText()=="erstmal irgendwas"){inventar.addZettel(5);}
+        //identifizieren des Zettels und übergeben ans Inventar
+    }
 
     /**
      * Nach Links schauen.
@@ -74,7 +87,7 @@ public class Spieler
     
     /**
      * @param Die Flasche, die getrunken wird.
-     * @ein paar kleine Aenderungen von Tjorven Bruns
+     * @ein, zwei kleine Aenderungen von Tjorven Bruns, um das Rätsel zu berichtigen
      */
     public void trinke(Flasche flasche)
     {
